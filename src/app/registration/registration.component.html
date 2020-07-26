@@ -1,1 +1,70 @@
-<p>registration works!</p>
+<div class="container d-flex justify-content-center">
+  
+  <div class="row">
+
+    <!-- Registration form -->
+    <form [formGroup]="registrationForm" class="center-item">
+
+      <div class="form-group">
+        
+        <!-- Head title -->
+        <p class="h4 mb-4">Registration form</p>
+      </div>
+
+      <div class="form-group">
+
+        <!-- Username -->
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" [(ngModel)]="userRegistration.username">
+          <mat-error *ngIf="checkRequiredValidation('username')">Username is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+
+        <!-- Password -->
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" [(ngModel)]="userRegistration.password">
+          <mat-error *ngIf="checkRequiredValidation('password')">Password is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+
+        <!-- E-mail -->
+        <mat-form-field class="email-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Ex. aleksa.janic@gmail.com" [(ngModel)]="userRegistration.email">
+          <mat-error *ngIf="checkEmailValidation('email')">Please enter a valid email address</mat-error>
+          <mat-error *ngIf="checkRequiredValidation('email')">Email is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-group">
+
+        <!-- Button -->
+        <button mat-raised-button color="primary" (click)="registerUser()">Sing up</button>
+      </div>
+
+      <div class="form-group">
+
+        <!-- Link to login -->
+        <p>Already have account?
+          <a href="">Login</a>
+        </p>
+      </div>
+
+      <div class="form-group">
+
+        <!-- Terms of service -->
+        <p>By clicking
+          <em>Sign up</em> you agree to our
+          <a href="" target="_blank">terms of service</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
