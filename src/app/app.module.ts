@@ -18,6 +18,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http'
 import {MatRadioModule} from '@angular/material/radio';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwtModule } from "@auth0/angular-jwt";
+import { ProfileComponent } from './profile/profile.component';
+
+export function tokenGetter() {
+  return sessionStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    ShellComponent
+    ShellComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +47,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatButtonModule,
     HttpClientModule,
     MatRadioModule,
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config : {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:9009'],
+        disallowedRoutes: [
+          'http://localhost:9009/api/role',
+          'http://localhost:9009/api/users/registration',
+          'http://localhost:9009/api/users/authenticate'
+        ],
+        authScheme: '',
+        skipWhenExpired: true
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
