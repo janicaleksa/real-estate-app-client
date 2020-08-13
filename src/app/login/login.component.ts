@@ -3,7 +3,7 @@ import { UserLogin } from './user-login';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UserProfile } from '../profile/user-profile'
+import { UserProfile } from '../profile/user-profile';
 
 @Component({
   selector: 'app-login',
@@ -54,13 +54,12 @@ export class LoginComponent implements OnInit {
           data => { 
             const loggedUser = <UserProfile>data;
             sessionStorage.setItem('user', JSON.stringify(loggedUser));
-            this.showMessage('success', 'User has been successfully loged with username: ' + loggedUser.username);
+            this.router.navigate(['/home-renter']);
            },
           error => { 
             this.showMessage('danger', error.error.message);
             sessionStorage.removeItem('user');
-           },
-          () => { console.log('finish!') }
+           }
         )
       }
     )
