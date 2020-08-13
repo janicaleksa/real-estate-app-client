@@ -4,4 +4,5 @@ export class UserProfile {
                 public lastName: string,  public email: string, public dateOfBirth: string, 
                 public gender: string,  public phoneNumber: string, public city: string,
                 public role: string) {}
+                
 }
